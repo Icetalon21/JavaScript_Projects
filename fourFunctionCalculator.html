@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <style>
+            button {
+                border: none;
+                background: rgb(100,100,255);
+                padding: 10px;
+                margin: 0px;
+                transition-duration: 0.5s;
+            }
+            button:hover {
+                background: rgb(80,80,230);
+                transition-duration: 0.5s;
+            }
+            button:active {
+                background: rgb(50,50,150);
+                transition-duration: 0.1s;
+            }
+        </style>
+        <script>
+
+            var a = 0;
+            var b = 0;
+
+
+            let NumberBuffer = [];
+            let CalcState = 0;
+            // function yourNumbers() {
+            //     var a = prompt(parseFloat("Enter in first value: "));
+            //     var b = prompt(parseFloat("Enter in second value"));
+            // }
+
+            function ButtonPressed(event) {
+                console.log(event.target.id);
+                switch (event.target.id) {
+                    case "Add":
+
+                        document.getElementById("UserInput").value += "+";
+                        break;
+                    case "Subtract":
+                        document.getElementById("UserInput").value += "-";
+                        break;
+                    case "Multiply":
+                        document.getElementById("UserInput").value += "x";
+                        break;
+                    case "Divide":
+                        document.getElementById("UserInput").value += "/";
+                        break;
+                    case "Equals":
+                        let calculatorOutput = ParseEquation(document.getElementById("UserInput").value);
+                        document.getElementById('Output').innerHTML = calculatorOutput.toString();
+                        break;
+                    default:
+                }
+            }
+
+
+
+            function CheckUserInput(event) {
+                if (event.keycode === 'enter') {
+                    let calculatorOutput = ParseEquation(document.getElementById("UserInput").value);
+                    document.getElementById('Output').innerHTML = calculatorOutput.toString();
+                }
+                try {
+                    event.target.value = event.target.value.replace(/[!@#$%^&(),;'<>:"?/_|{}]+/,"");
+                }
+                catch(e) {
+                    throw "Error, event target not found";
+                }
+            }
+
+            // Parse string into math and solve
+
+            function ParseEquation(str) {
+                var result;
+                let eq = "result = " + str;
+                try {
+                    eval(eq);
+                }
+                catch(e) {
+                    alert(e);
+                }
+
+                return result;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Calculator</h1>
+
+        <input type="text" id="UserInput" onkeyup="CheckUserInput(event);"/>
+        <br>
+
+        <button id="Add" onclick="ButtonPressed(event);">+</button>
+        <button id="Subtract" onclick="ButtonPressed(event);">-</button>
+        <button id="Multiply" onclick="ButtonPressed(event);">x</button>
+        <button id="Divide" onclick="ButtonPressed(event);">/</button>
+        <button id="Equals" onclick="ButtonPressed(event);">=</button>
+
+        <div id="Output"></div>
+    </body>
+</html>
