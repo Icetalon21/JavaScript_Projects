@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Coin Composition Calculator</title>
+    <style>
+      footer {
+      background: darkgrey;
+      display: block;
+
+      /* height: 180px; */
+      padding: 1px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-bottom: 20px;
+      margin-top: 40px;
+      }
+      footer h3 {
+      margin-top: 14px;
+      margin-bottom: 25px;
+      }
+      body p {
+      margin-bottom: 5px;
+      }
+    </style>
+    <script src="changeMaker.js"></script>
+   </head>
+   <body onload="UpdateChange();">
+      <h1>Coin Composition Calculator</h1>
+      <p>Enter Monetary Value into Box Below</p>
+      <input id="MonetaryInput" onkeyup="UpdateChange();" />
+      <p>Enter available coin values in dollars in a space or comma separated list below</p>
+      <input id="ChangeInput" onkeyup="UpdateChange();"/>
+   </body>
+   <footer>
+      <h3>Most Efficient Way of Giving Change</h3>
+      <div id="Output"></div>
+   </footer>
+</html>
